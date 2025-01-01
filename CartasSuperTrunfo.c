@@ -37,7 +37,18 @@ int main()
     
     // Impressão das informações das cartas
 
-    printf("O Código da Cidade é: %d \n O Nome da Cidade é: %s\n A Cidade %s tem: %d habitantes\n A Área da Cidade %s é de: %.2f km²\n O PIB da Cidade %s é de: R$%.2f\n A Cidade %s tem: %d Pontos Turísticos\n", codigoCidade, nomeCidade, nomeCidade, populacaoCidade, nomeCidade, areaCidade, nomeCidade, pibCidade, nomeCidade, pontosTuristicosCidade);
+    // printf single line (mais eficiente na execução. mas fica mais difícil para dar manutenção no código)
+    //printf("O Código da Cidade é: %d \n O Nome da Cidade é: %s\n A Cidade %s tem: %d habitantes\n A Área da Cidade %s é de: %.2f km²\n O PIB da Cidade %s é de: R$%.2f\n A Cidade %s tem: %d Pontos Turísticos\n", codigoCidade, nomeCidade, nomeCidade, populacaoCidade, nomeCidade, areaCidade, nomeCidade, pibCidade, nomeCidade, pontosTuristicosCidade);
+
+    // printf separado por cada output (menos eficiente)
+    // mais fácil de dar manutenção no código (prefiro assim)
+    printf("O Código da Cidade é: %d\n", codigoCidade);
+    printf("O Nome da Cidade é: %s\n", nomeCidade);
+    printf("A Cidade %s tem: %d habitantes\n", nomeCidade, populacaoCidade);
+    printf("A Área da Cidade %s é de: %.2f km²\n", nomeCidade, areaCidade);
+    printf("O PIB da Cidade %s é de: R$%.2f\n", nomeCidade, pibCidade);
+    printf("A Cidade %s tem: %d Pontos Turísticos\n", nomeCidade, pontosTuristicosCidade);
+
 
     return 0;
     }
