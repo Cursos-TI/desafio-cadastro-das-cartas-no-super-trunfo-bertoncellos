@@ -1,14 +1,16 @@
+// Nível 2 - Aventureiro
+
+// Adições mo Programa
+
+// Densidade Populacional: População dividida pela área da cidade.
+// PIB per Capita: PIB total dividido pela população.
+
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-
-
-int main() 
-    {
-    // Declaração das Variáveis
-
-    int codigoCidade;
+int main()
+{
+    
+ int codigoCidade;
     char nomeCidade[50];
     int populacaoCidade;
     float areaCidade;
@@ -37,18 +39,18 @@ int main()
     
     // Impressão das informações das cartas
 
-    // printf single line (mais eficiente na execução. mas fica mais difícil para dar manutenção no código)
-    //printf("O Código da Cidade é: %d \n O Nome da Cidade é: %s\n A Cidade %s tem: %d habitantes\n A Área da Cidade %s é de: %.2f km²\n O PIB da Cidade %s é de: R$%.2f\n A Cidade %s tem: %d Pontos Turísticos\n", codigoCidade, nomeCidade, nomeCidade, populacaoCidade, nomeCidade, areaCidade, nomeCidade, pibCidade, nomeCidade, pontosTuristicosCidade);
+    float densidadePopulacional = populacaoCidade / areaCidade;
 
-    // printf separado por cada output (menos eficiente)
-    // mais fácil de dar manutenção no código (prefiro assim)
+    float pibPerCapita = pibCidade / populacaoCidade;
+
     printf("O Código da Cidade é: %d\n", codigoCidade);
     printf("O Nome da Cidade é: %s\n", nomeCidade);
     printf("A Cidade %s tem: %d habitantes\n", nomeCidade, populacaoCidade);
     printf("A Área da Cidade %s é de: %.2f km²\n", nomeCidade, areaCidade);
     printf("O PIB da Cidade %s é de: R$%.2f\n", nomeCidade, pibCidade);
     printf("A Cidade %s tem: %d Pontos Turísticos\n", nomeCidade, pontosTuristicosCidade);
-
+    printf("A Densidade Populacional da Cidade %s é de aproximadamente %.1f habitantes/km²\n", nomeCidade, densidadePopulacional);
+    printf("O PIB Per Capita da Cidade %s é de R$%.2f/habitante", nomeCidade, pibPerCapita);
 
     return 0;
-    }
+}
