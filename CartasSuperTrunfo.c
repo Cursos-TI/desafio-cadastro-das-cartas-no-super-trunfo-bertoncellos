@@ -1,56 +1,176 @@
-// Nível 2 - Aventureiro
+// Nível 3 - Mestre
 
-// Adições mo Programa
+// Adições no Programa
 
-// Densidade Populacional: População dividida pela área da cidade.
-// PIB per Capita: PIB total dividido pela população.
+// Comparação de Cartas:
+// O sistema permitirá ao usuário comparar duas cartas com base nas propriedades inseridas e calculadas.
+// Cada carta terá um "Super Poder", que é a soma de todas as propriedades.
 
 #include <stdio.h>
+#include <string.h>
 
-int main()
+typedef struct
 {
-    
- int codigoCidade;
+     // criação das variáveis que montam as cartas
+
+    int codigoCidade;
     char nomeCidade[50];
     int populacaoCidade;
     float areaCidade;
     float pibCidade;
     int pontosTuristicosCidade;
 
-    // Leitura dos dados das cartas e gravação nas variáveis
+    // propriedades derivadas de duas variáveis
 
-    printf("Insira o Código da Cidade: \n");
-    scanf("%d", &codigoCidade);
+    float densidadePopulacional;
+    float pibPerCapita;
+} Carta;
 
-    printf("Insira o Nome da Cidade: \n");
-    scanf("%s", &nomeCidade);
+ int main()
+ {
+    // declaração da array das cartas
 
-    printf("Insira o Número de Habitantes da Cidade: \n");
-    scanf("%d", &populacaoCidade);
+    Carta cartas[2];
+    int i;
 
-    printf("Insira a Área da Cidade em km²: \n");
-    scanf("%f", &areaCidade);
+    for ( i = 0; i < 2; i++)
+    {
+        printf("Insira os dados da Carta %d\n", i + 1);
+        // Leitura dos dados das cartas e gravação nas variáveis
 
-    printf("Insira o PIB da Cidade: \n");
-    scanf("%f", &pibCidade);
+        printf("Insira o Código da Cidade: \n");
+        scanf("%d", &cartas[i].codigoCidade);
 
-    printf("Insira a quantidade de Pontos Turísticos da Cidade: \n");
-    scanf("%d", &pontosTuristicosCidade);
+        // Consumir o '\n' deixado pelo scanf
+        getchar();
+
+        printf("Insira o Nome da Cidade: \n");
+        // Lê o nome da cidade (permitindo espaços)
+        fgets(cartas[i].nomeCidade, sizeof(cartas[i].nomeCidade), stdin);
+        // Remove o '\n' (quebra de linha) se presente
+        cartas[i].nomeCidade[strcspn(cartas[i].nomeCidade, "\n")] = '\0';
+
+        printf("Insira o Número de Habitantes da Cidade: \n");
+        scanf("%d", &cartas[i].populacaoCidade);
+
+        printf("Insira a Área da Cidade em km²: \n");
+        scanf("%f", &cartas[i].areaCidade);
+
+        printf("Insira o PIB da Cidade: \n");
+        scanf("%f", &cartas[i].pibCidade);
+
+        printf("Insira a quantidade de Pontos Turísticos da Cidade: \n");
+        scanf("%d", &cartas[i].pontosTuristicosCidade);
+
+        // cálculo das variáveis derivadas
+
+        cartas[i].densidadePopulacional = cartas[i].populacaoCidade / cartas[i].areaCidade;
+        cartas[i].pibPerCapita = cartas[i].pibCidade / cartas[i].populacaoCidade;
     
-    // Impressão das informações das cartas
+    }
+    
+    // Comparação dos PONTOS de cada Carta
+    // P/ cada propriedade, a Carta com o valor maior recebe 1 ponto
 
-    float densidadePopulacional = populacaoCidade / areaCidade;
+    int pontosCarta[2] = {0, 0};
 
-    float pibPerCapita = pibCidade / populacaoCidade;
+    // Comparação da População
 
-    printf("O Código da Cidade é: %d\n", codigoCidade);
-    printf("O Nome da Cidade é: %s\n", nomeCidade);
-    printf("A Cidade %s tem: %d habitantes\n", nomeCidade, populacaoCidade);
-    printf("A Área da Cidade %s é de: %.2f km²\n", nomeCidade, areaCidade);
-    printf("O PIB da Cidade %s é de: R$%.2f\n", nomeCidade, pibCidade);
-    printf("A Cidade %s tem: %d Pontos Turísticos\n", nomeCidade, pontosTuristicosCidade);
-    printf("A Densidade Populacional da Cidade %s é de aproximadamente %.1f habitantes/km²\n", nomeCidade, densidadePopulacional);
-    printf("O PIB Per Capita da Cidade %s é de R$%.2f/habitante", nomeCidade, pibPerCapita);
+    if (cartas[0].populacaoCidade > cartas[1].populacaoCidade)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].populacaoCidade < cartas[1].populacaoCidade)
+    {
+        pontosCarta[1]++;
+    }
+    
+    // Comparação da Área
+    
+    if (cartas[0].areaCidade > cartas[1].areaCidade)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].areaCidade < cartas[1].areaCidade)
+    {
+        pontosCarta[1]++;
+    }
+    
+    // Comparação do PIB
+    
+    if (cartas[0].pibCidade > cartas[1].pibCidade)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].pibCidade < cartas[1].pibCidade)
+    {
+        pontosCarta[1]++;
+    }
+    
+    // Comparação dos Pontos Turísticos
+    
+    if (cartas[0].pontosTuristicosCidade > cartas[1].pontosTuristicosCidade)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].pontosTuristicosCidade < cartas[1].pontosTuristicosCidade)
+    {
+        pontosCarta[1]++;
+    }
+
+    // Comparação da Densidade Populacional
+    
+    if (cartas[0].densidadePopulacional > cartas[1].densidadePopulacional)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].densidadePopulacional < cartas[1].densidadePopulacional)
+    {
+        pontosCarta[1]++;
+    }
+
+    // Comparação do PIB Per Capita
+    
+    if (cartas[0].pibPerCapita > cartas[1].pibPerCapita)
+    {
+        pontosCarta[0]++;
+    }
+
+    else if (cartas[0].pibPerCapita < cartas[1].pibPerCapita)
+    {
+        pontosCarta[1]++;
+    }
+
+
+    // Exibindo o resultado das comparações
+
+    printf("Resultado das Comparações entre as Cartas\n");
+    printf("Carta 1 (%s): %d pontos\n", cartas[0].nomeCidade, pontosCarta[0]);
+    printf("Carta 2 (%s): %d pontos\n", cartas[1].nomeCidade, pontosCarta[1]);
+
+    // Decidindo a Carta Vencedora
+
+    if (pontosCarta[0] > pontosCarta[1])
+    {
+        printf("A Carta 1 - (%s) é a VENCEDORA!\n", cartas[0].nomeCidade);
+    }
+
+    else if (pontosCarta[0] < pontosCarta[1])
+    {
+        printf("A Carta 2 - (%s) é a VENCEDORA!\n", cartas[1].nomeCidade);
+    }
+
+    else
+    {
+        printf("Empate!\n");
+    }
+    
+    
 
     return 0;
-}
+ };
